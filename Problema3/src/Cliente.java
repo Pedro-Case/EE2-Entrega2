@@ -25,14 +25,19 @@ class Cliente extends Thread{
             barbeiro.novo_cliente.unlock();
             while (!cabelo_cortado){
                 try {
-                    if (barbeiro.dormindo && barbeiro.getState() == State.TIMED_WAITING && barbeiro.fila.getFirst() == this) {
+                    barbeiro.cortando_cabelo.lock();
+                    if (barbeiro.dormindo && barbeiro.fila.getFirst() == this) {
                         barbeiro.interrupt();
                         barbeiro.dormindo = false;
                         System.out.println("O cliente " + nome + " acordou o barbeiro.");
                     }
                 }
                 catch (NoSuchElementException e){
-                    this.interrupt();}
+                    this.interrupt();
+                }
+                finally {
+                    barbeiro.cortando_cabelo.unlock();
+                }
             }
         }
         else {

@@ -19,7 +19,6 @@ class Barbeiro extends Thread{
     }
     void cortar_cabelo(){
         try{
-            cortando_cabelo.lock();
             Cliente cliente = fila.removeFirst();
             cliente.cabelo_cortado = true;
             System.out.println("Barbeiro cortou o cabelo do cliente " + cliente.nome);
@@ -33,11 +32,12 @@ class Barbeiro extends Thread{
     public void run(){
         while(!terminou){
             if (!fila.isEmpty()){
+                cortando_cabelo.lock();
                 cortar_cabelo();
             }
             else {
                 try {
-                    System.out.println("Barbeiro foi dormir já que não tinha ninguém para atender" + terminou);
+                    System.out.println("Barbeiro foi dormir já que não tinha ninguém para atender");
                     dormindo = true;
                     sleep(10000);
                 }
