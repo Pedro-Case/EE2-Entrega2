@@ -37,12 +37,11 @@ class Barbeiro extends Thread{
             }
             else {
                 try {
-                    System.out.println("Barbeiro foi dormir já que não tinha ninguém para atender");
+                    System.out.println("Barbeiro foi dormir já que não tinha ninguém para atender" + terminou);
                     dormindo = true;
                     sleep(10000);
                 }
-                catch (InterruptedException e) {
-                }
+                catch (InterruptedException e) {}
             }
         }
 

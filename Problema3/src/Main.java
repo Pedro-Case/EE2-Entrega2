@@ -13,6 +13,7 @@ public class Main {
         for (Cliente cliente : clientes) {
             cliente.join();
         }
+        System.out.println("Fim do expediente");
         barbeiro.terminou = true;
         barbeiro.interrupt();
 
