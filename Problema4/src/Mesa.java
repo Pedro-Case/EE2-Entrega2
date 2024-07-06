@@ -32,7 +32,7 @@ public class Mesa {
             atualizando_mesa.lock();
             assentos_ocupados.release(5);
             comeram = 0;
-            System.out.println("Todos que terminaram de comer se levantaram");
+            System.out.println("Todos da mesa terminaram de comer, então se levantaram e sairam.");
             atualizando_mesa.unlock();
         }
     }
