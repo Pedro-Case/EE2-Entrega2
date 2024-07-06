@@ -25,19 +25,22 @@ public class Assentos extends Thread{
         finally {
             atualizando_mesa.unlock();
         }
+
+
+
     }
 
-    public void run(){
-        while(rodando){
-            if (comeram == 5){
-                System.out.println(comeram);
-                atualizando_mesa.lock();
-                assentos_ocupados.release(5);
-                comeram = 0;
-                System.out.println("Todos que terminaram de comer se levantaram");
-                System.out.println(assentos_ocupados.availablePermits());
-                atualizando_mesa.unlock();
-            }
+    void sentar_assentos() {
+        if (comeram == 5) {
+            System.out.println(comeram);
+            atualizando_mesa.lock();
+            assentos_ocupados.release(5);
+            comeram = 0;
+            System.out.println("Todos que terminaram de comer se levantaram");
+            System.out.println(assentos_ocupados.availablePermits());
+            atualizando_mesa.unlock();
         }
+
     }
+
 }

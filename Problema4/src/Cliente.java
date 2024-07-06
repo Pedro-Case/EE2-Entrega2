@@ -14,6 +14,7 @@ public class Cliente extends Thread{
             sleep(500);
             assento.atualizando_mesa.lock();
             assento.comeram++;
+            assento.sentar_assentos();
             System.out.println(nome + " terminou de comer " + assento.comeram);
             assento.atualizando_mesa.unlock();
 
